@@ -874,7 +874,8 @@ CONTAINS
         ELSE
           ZL = 0.01
         ENDIF                                                                    
-        FLQC(I)=RHOX(I)*MAVAIL(I)*UST(I)*KARMAN/DENOMQ(I)
+        FLQC(I) = 0. ! turn off moisture exchange for dry simulation
+!       FLQC(I)=RHOX(I)*MAVAIL(I)*UST(I)*KARMAN/DENOMQ(I)
 !       FLQC(I)=RHOX(I)*MAVAIL(I)*UST(I)*KARMAN/(   &
 !               ALOG(KARMAN*UST(I)*ZA(I)/XKA+ZA(I)/ZL)-PSIH(I))
         DTTHX=ABS(THX(I)-THGB(I))                                            
@@ -886,6 +887,7 @@ CONTAINS
           FLHC(I)=0.                                                             
         ENDIF                                                                    
   360 CONTINUE
+      WRITE(*,*) 'moisture exchange coefficient FLQC(I) modified to ', FLQC(I)
 
 !                                                                                
 !-----COMPUTE SURFACE MOIST FLUX:                                               
@@ -900,6 +902,7 @@ CONTAINS
 !       QFX(I)=AMAX1(QFX(I),0.)                                            
         LH(I)=XLV*QFX(I)
   370 CONTINUE                                                                 
+      WRITE(*,*) 'moisture flux QFX(I) is ', QFX(I)
                                                                                 
 !-----COMPUTE SURFACE HEAT FLUX:                                                 
 !                                                                                
