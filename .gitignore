@@ -21,6 +21,7 @@ configure.wrf*
 # Out-of-source build locations
 _build*
 wrf_config.cmake
+install*
 
 # Executables when not featuring .exe suffix
 ndown
